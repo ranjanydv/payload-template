@@ -14,30 +14,96 @@ export const hero: Field = {
   type: 'group',
   fields: [
     {
-      name: 'type',
-      type: 'select',
-      defaultValue: 'lowImpact',
-      label: 'Type',
-      options: [
+      type: 'row',
+      fields: [
         {
-          label: 'None',
-          value: 'none',
+          name: 'type',
+          type: 'select',
+          defaultValue: 'twoSection',
+          label: 'Type',
+          options: [
+            {
+              label: 'None',
+              value: 'none',
+            },
+            {
+              label: 'High Impact',
+              value: 'highImpact',
+            },
+            {
+              label: 'Medium Impact',
+              value: 'mediumImpact',
+            },
+            {
+              label: 'Low Impact',
+              value: 'lowImpact',
+            },
+            {
+              label: 'Two Section Hero',
+              value: 'twoSection',
+            },
+          ],
+          required: true,
+          admin: {
+            width: '50%',
+            style: {
+              alignSelf: 'flex-start',
+            },
+          },
         },
         {
-          label: 'High Impact',
-          value: 'highImpact',
+          name: 'colorVariant',
+          type: 'select',
+          defaultValue: 'light',
+          label: 'Color Variant',
+          options: [
+            {
+              label: 'Light',
+              value: 'light',
+            },
+            {
+              label: 'Dark',
+              value: 'dark',
+            },
+            {
+              label: 'Gray',
+              value: 'gray',
+            },
+            {
+              label: 'Blue',
+              value: 'blue',
+            },
+            {
+              label: 'Green',
+              value: 'green',
+            },
+          ],
+          required: true,
+          admin: {
+            width: '50%',
+            style: {
+              alignSelf: 'flex-start',
+            },
+          },
         },
         {
-          label: 'Medium Impact',
-          value: 'mediumImpact',
-        },
-        {
-          label: 'Low Impact',
-          value: 'lowImpact',
+          name: 'animation',
+          type: 'checkbox',
+          defaultValue: false,
+          label: 'Animation',
         },
       ],
-      required: true,
     },
+    // {
+    //   name: 'heading',
+    //   type: 'text',
+    //   label: 'Heading Text',
+    //   required: true,
+    //   admin: {
+    //     placeholder: 'Enter your heading text here',
+    //     condition: (_, siblingData) => siblingData.type === 'twoSectionHero',
+    //   },
+    // },
     {
       name: 'richText',
       type: 'richText',
@@ -62,7 +128,8 @@ export const hero: Field = {
       name: 'media',
       type: 'upload',
       admin: {
-        condition: (_, { type } = {}) => ['highImpact', 'mediumImpact'].includes(type),
+        condition: (_, { type } = {}) =>
+          ['highImpact', 'mediumImpact', 'twoSection'].includes(type),
       },
       relationTo: 'media',
       required: true,

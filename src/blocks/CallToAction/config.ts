@@ -14,13 +14,55 @@ export const CallToAction: Block = {
   interfaceName: 'CallToActionBlock',
   fields: [
     {
+      type: 'row',
+      fields: [
+        {
+          name: 'layout',
+          type: 'select',
+          defaultValue: 'center',
+          options: [
+            {
+              label: 'Center',
+              value: 'center',
+            },
+            {
+              label: 'Left',
+              value: 'left',
+            },
+          ],
+          admin: {
+            width: '50%',
+          },
+        },
+        {
+          name: 'width',
+          type: 'select',
+          defaultValue: 'inline',
+          options: [
+            {
+              label: 'Full Width',
+              value: 'full-width',
+            },
+            {
+              label: 'Inline',
+              value: 'inline',
+            },
+          ],
+          admin: {
+            width: '50%',
+          },
+        },
+      ],
+    },
+
+    {
       name: 'richText',
       type: 'richText',
       editor: lexicalEditor({
         features: ({ rootFeatures }) => {
           return [
             ...rootFeatures,
-            HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
+            HeadingFeature({ enabledHeadingSizes: ['h2', 'h3', 'h4'] }),
             FixedToolbarFeature(),
             InlineToolbarFeature(),
           ]
@@ -31,7 +73,7 @@ export const CallToAction: Block = {
     linkGroup({
       appearances: ['default', 'outline'],
       overrides: {
-        maxRows: 2,
+        maxRows: 3,
       },
     }),
   ],
