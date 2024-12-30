@@ -17,7 +17,7 @@ const ColumnLayout: React.FC<{
   }
 
   return (
-    <div className="gap-x-16 gap-y-8 grid grid-cols-4 lg:grid-cols-12 py-16">
+    <div className="gap-x-16 gap-y-8 grid grid-cols-4 lg:grid-cols-12 py-6 lg:py-16">
       {columns?.map((col, index) => {
         const { enableLink, link, richText, size } = col
 
@@ -44,7 +44,7 @@ const TwoSectionLayout: React.FC<{
   const { richText, media, imagePosition, enableLink, link } = twoSection
 
   return (
-    <div className="flex md:flex-row flex-col md:gap-8 h-full">
+    <div className="flex md:flex-row flex-col gap-4 md:gap-8 py-2 h-full">
       <div
         className={cn(
           'relative w-full md:w-[45%] h-full',
