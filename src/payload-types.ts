@@ -107,6 +107,16 @@ export interface Page {
       };
       [k: string]: unknown;
     } | null;
+    features?: {
+      feature?:
+        | {
+            feature?: string | null;
+            id?: string | null;
+          }[]
+        | null;
+      alignment?: ('row' | 'column') | null;
+      variant?: ('default' | 'blue' | 'green' | 'white') | null;
+    };
     links?:
       | {
           link: {
@@ -123,7 +133,8 @@ export interface Page {
                 } | null);
             url?: string | null;
             label: string;
-            appearance?: ('default' | 'outline') | null;
+            appearance?: ('default' | 'outline' | 'secondary' | 'link' | 'destructive' | 'ghost') | null;
+            size?: ('default' | 'icon' | 'sm' | 'lg') | null;
           };
           id?: string | null;
         }[]
@@ -355,6 +366,7 @@ export interface CallToActionBlock {
           url?: string | null;
           label: string;
           appearance?: ('default' | 'outline') | null;
+          size?: ('default' | 'icon' | 'sm' | 'lg') | null;
         };
         id?: string | null;
       }[]
@@ -404,7 +416,8 @@ export interface ContentBlock {
               } | null);
           url?: string | null;
           label: string;
-          appearance?: ('default' | 'outline') | null;
+          appearance?: ('default' | 'outline' | 'secondary' | 'link' | 'destructive' | 'ghost') | null;
+          size?: ('default' | 'icon' | 'sm' | 'lg') | null;
         };
         id?: string | null;
       }[]
@@ -442,7 +455,8 @@ export interface ContentBlock {
           } | null);
       url?: string | null;
       label: string;
-      appearance?: ('default' | 'outline') | null;
+      appearance?: ('default' | 'outline' | 'secondary' | 'link' | 'destructive' | 'ghost') | null;
+      size?: ('default' | 'icon' | 'sm' | 'lg') | null;
     };
   };
   id?: string | null;
@@ -896,6 +910,18 @@ export interface PagesSelect<T extends boolean = true> {
         colorVariant?: T;
         animation?: T;
         richText?: T;
+        features?:
+          | T
+          | {
+              feature?:
+                | T
+                | {
+                    feature?: T;
+                    id?: T;
+                  };
+              alignment?: T;
+              variant?: T;
+            };
         links?:
           | T
           | {
@@ -908,6 +934,7 @@ export interface PagesSelect<T extends boolean = true> {
                     url?: T;
                     label?: T;
                     appearance?: T;
+                    size?: T;
                   };
               id?: T;
             };
@@ -956,6 +983,7 @@ export interface CallToActionBlockSelect<T extends boolean = true> {
               url?: T;
               label?: T;
               appearance?: T;
+              size?: T;
             };
         id?: T;
       };
@@ -985,6 +1013,7 @@ export interface ContentBlockSelect<T extends boolean = true> {
               url?: T;
               label?: T;
               appearance?: T;
+              size?: T;
             };
         id?: T;
       };
@@ -1004,6 +1033,7 @@ export interface ContentBlockSelect<T extends boolean = true> {
               url?: T;
               label?: T;
               appearance?: T;
+              size?: T;
             };
       };
   id?: T;

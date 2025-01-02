@@ -119,6 +119,66 @@ export const hero: Field = {
       }),
       label: false,
     },
+    {
+      name: 'features',
+      label: false,
+      type: 'group',
+      fields: [
+        {
+          name: 'feature',
+          type: 'array',
+          fields: [
+            {
+              name: 'feature',
+              type: 'text',
+            },
+          ],
+        },
+        {
+          type: 'row',
+          fields: [
+            {
+              name: 'alignment',
+              type: 'select',
+              options: [
+                {
+                  label: 'Row',
+                  value: 'row',
+                },
+                {
+                  label: 'Column',
+                  value: 'column',
+                },
+              ],
+              defaultValue: 'column',
+            },
+            {
+              name: 'variant',
+              type: 'select',
+              options: [
+                {
+                  label: 'Default',
+                  value: 'default',
+                },
+                {
+                  label: 'Blue',
+                  value: 'blue',
+                },
+                {
+                  label: 'Green',
+                  value: 'green',
+                },
+                {
+                  label: 'White',
+                  value: 'white',
+                },
+              ],
+              defaultValue: 'default',
+            },
+          ],
+        },
+      ],
+    },
     linkGroup({
       overrides: {
         maxRows: 2,

@@ -4,12 +4,18 @@ import { CMSLink } from '@/components/Link'
 import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
 import { cn } from '@/utilities/cn'
+import { CheckCheckIcon } from 'lucide-react'
 
 export const TwoSectionHero: React.FC<Page['hero']> = ({
   links,
   media,
   richText,
   colorVariant,
+  features = {
+    alignment: 'column',
+    variant: 'default',
+    feature: [{ feature: 'Feature 1' }, { feature: 'Feature 2' }],
+  },
 }) => {
   return (
     <section
@@ -29,6 +35,38 @@ export const TwoSectionHero: React.FC<Page['hero']> = ({
                   return (
                     <li key={i}>
                       <CMSLink {...link} />
+                    </li>
+                  )
+                })}
+              </ul>
+            )}
+            {Array.isArray(features.feature) && features.feature.length > 0 && (
+              <ul
+                className={cn(
+                  'gap-4 mt-4',
+                  features.alignment === 'row' ? 'grid grid-cols-2' : 'flex flex-col',
+                )}
+              >
+                {features.feature.map(({ feature }, i) => {
+                  return (
+                    <li
+                      key={i}
+                      className={cn('flex items-center gap-2', {
+                        'text-blue-500': features.variant === 'blue',
+                        'text-green-500': features.variant === 'green',
+                        'text-primary': features.variant === 'default',
+                        'text-white': features.variant === 'white',
+                      })}
+                    >
+                      <CheckCheckIcon
+                        className={cn('w-4 h-4', {
+                          'text-blue-500': features.variant === 'blue',
+                          'text-green-500': features.variant === 'green',
+                          'text-primary': features.variant === 'default',
+                          'text-white': features.variant === 'white',
+                        })}
+                      />
+                      {feature}
                     </li>
                   )
                 })}

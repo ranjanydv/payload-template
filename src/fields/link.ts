@@ -2,8 +2,8 @@ import type { Field } from 'payload'
 
 import deepMerge from '@/utilities/deepMerge'
 
-export type LinkAppearances = 'default' | 'outline'
-
+export type LinkAppearances = 'default' | 'outline' | 'secondary' | 'link' | 'destructive' | 'ghost'
+export type LinkSizes = 'default' | 'icon' | 'lg' | 'sm'
 export const appearanceOptions: Record<LinkAppearances, { label: string; value: string }> = {
   default: {
     label: 'Default',
@@ -12,6 +12,40 @@ export const appearanceOptions: Record<LinkAppearances, { label: string; value: 
   outline: {
     label: 'Outline',
     value: 'outline',
+  },
+  secondary: {
+    label: 'Secondary',
+    value: 'secondary',
+  },
+  link: {
+    label: 'Link',
+    value: 'link',
+  },
+  destructive: {
+    label: 'Destructive',
+    value: 'destructive',
+  },
+  ghost: {
+    label: 'Ghost',
+    value: 'ghost',
+  },
+}
+export const sizeOptions: Record<LinkSizes, { label: string; value: string }> = {
+  default: {
+    label: 'Default',
+    value: 'default',
+  },
+  icon: {
+    label: 'Icon',
+    value: 'icon',
+  },
+  sm: {
+    label: 'Small',
+    value: 'sm',
+  },
+  lg: {
+    label: 'Large',
+    value: 'lg',
   },
 }
 
@@ -26,7 +60,7 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
     name: 'link',
     type: 'group',
     admin: {
-      hideGutter: true,
+      // hideGutter: true,
     },
     fields: [
       {
@@ -118,20 +152,43 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
   }
 
   if (appearances !== false) {
-    let appearanceOptionsToUse = [appearanceOptions.default, appearanceOptions.outline]
+    let appearanceOptionsToUse = [
+      appearanceOptions.default,
+      appearanceOptions.outline,
+      appearanceOptions.secondary,
+      appearanceOptions.link,
+      appearanceOptions.destructive,
+      appearanceOptions.ghost,
+    ]
 
     if (appearances) {
       appearanceOptionsToUse = appearances.map((appearance) => appearanceOptions[appearance])
     }
 
     linkResult.fields.push({
-      name: 'appearance',
-      type: 'select',
-      admin: {
-        description: 'Choose how the link should be rendered.',
-      },
-      defaultValue: 'default',
-      options: appearanceOptionsToUse,
+      type: 'row',
+      fields: [
+        {
+          name: 'appearance',
+          type: 'select',
+          admin: {
+            description: 'Choose how the link should be rendered.',
+            width: '50%',
+          },
+          defaultValue: 'default',
+          options: appearanceOptionsToUse,
+        },
+        {
+          name: 'size',
+          type: 'select',
+          admin: {
+            description: 'Choose the size of the link.',
+            width: '50%',
+          },
+          defaultValue: 'default',
+          options: Object.values(sizeOptions),
+        },
+      ],
     })
   }
 

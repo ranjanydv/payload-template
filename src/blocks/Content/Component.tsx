@@ -45,7 +45,7 @@ const TwoSectionLayout: React.FC<{
 
   return (
     <div className="flex md:flex-row flex-col gap-4 md:gap-8 py-2 h-full">
-      <div
+      <div  
         className={cn(
           'relative w-full md:w-[45%] h-full',
           imagePosition === 'right' ? 'lg:order-2 order-1' : 'order-1',
