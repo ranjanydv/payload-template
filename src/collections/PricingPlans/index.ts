@@ -38,6 +38,7 @@ export const PricingPlans: CollectionConfig = {
         try {
           new URL(value)
           return true
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (err) {
           return 'Please enter a valid URL'
         }
